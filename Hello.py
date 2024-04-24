@@ -12,6 +12,7 @@ import json
 import time
 import hmac
 
+# Login form to check the password
 def check_password():
     """Returns `True` if the user had a correct password."""
 
@@ -51,7 +52,7 @@ if not check_password():
     st.stop()
 
 
-## Set the page title and favicon of the app
+# Set the page title and favicon of the app
 st.set_page_config(layout='wide', initial_sidebar_state='collapsed')
 custom_html = """
 <div class="banner">
@@ -75,13 +76,12 @@ custom_html = """
 </style>
 """
 
-## Display the custom HTML
+# Display the custom HTML
 st.components.v1.html(custom_html)
 
-## Set up the Google Sheets connection in case the user wants to handle its Data Position from a google sheet
-conn = st.connection("gsheets", type=GSheetsConnection)
 
-## Set up the Grist API connection in case the user wants to handle its Data Position from a Grist database
+
+# Set up the Grist API connection to the Grist document
 SERVER = "https://docs.getgrist.com"
 DOC_ID = "nSV5r7CLQCWzKqZCz7qBor"
 API_KEY = "3a00dc02645f6f36f4e1c9449dd4a8529b5e9149"
