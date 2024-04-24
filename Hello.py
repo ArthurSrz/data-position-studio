@@ -84,17 +84,13 @@ st.components.v1.html(custom_html)
 # Set up the Grist API connection to the Grist document
 SERVER = "https://docs.getgrist.com"
 DOC_ID = "nSV5r7CLQCWzKqZCz7qBor"
-API_KEY = "3a00dc02645f6f36f4e1c9449dd4a8529b5e9149"
+API_KEY = st.secrets["grist_api_key"]
 
 ## Initialize GristDocAPI with document ID, server, and API key
 api = GristDocAPI(DOC_ID, server=SERVER, api_key=API_KEY)
 
-## Load the data from Grist
-api_key = st.secrets["grist_api_key"]
-
-
 headers = {
-    "Authorization": f"Bearer {api_key}"
+    "Authorization": f"Bearer {API_KEY}"
 }
 
 ## Load Form2 from Grist
