@@ -35,4 +35,33 @@ Voir [Table Schema](Schema_table.json)
 
 ### Le code source
 
+Les fichiers clés :
+
+```
+data-position-studio/
+├── pages/
+│   ├── Recrutement.py
+│   └── Position.py
+└── Hello.py
+```
+
+Pour ajouter les Data Position créés par la communauté, il faut se rendre dans le fichiers `Hello.py` et ajouter sous la ligne 96 le bout de code suivant en adaptant `table_id{x}` et `data{x}` : 
+
+```
+## Load Data Position {X}
+subdomain = "docs"
+doc_id = "nSV5r7CLQCWzKqZCz7qBor"
+table_id_{x} = {grist_table_id}
+url = f"https://{subdomain}.getgrist.com/api/docs/{doc_id}/tables/{table_id_{x}}/records"
+response = requests.get(url, headers=headers)
+if response.status_code == 200:
+    data{x} = response.json()
+    columns = data{x}['records'][0]['fields'].keys()
+    # Process the data as needed
+else:
+    print(f"Request failed with status code {response.status_code}")
+```
+
+
+
 
