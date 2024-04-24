@@ -93,22 +93,9 @@ headers = {
     "Authorization": f"Bearer {API_KEY}"
 }
 
-## Load Form2 from Grist
-subdomain = "docs"
-doc_id = "nSV5r7CLQCWzKqZCz7qBor"
-table_id_2 = "Form2"
-url = f"https://{subdomain}.getgrist.com/api/docs/{doc_id}/tables/{table_id_2}/records"
-response = requests.get(url, headers=headers)
-if response.status_code == 200:
-    data = response.json()
-    #print("Houra")
-    columns = data['records'][0]['fields'].keys()
-    #print(list(columns)[0])
-    # Process the data as needed
-else:
-    print(f"Request failed with status code {response.status_code}")
+# Load Grist tables corresponding to the existing Data Position
 
-## Load Form3 from Grist
+## Load Data Position Maitre (Form3 from Grist)
 subdomain = "docs"
 doc_id = "nSV5r7CLQCWzKqZCz7qBor"
 table_id_3 = "Form3"
@@ -116,29 +103,29 @@ url = f"https://{subdomain}.getgrist.com/api/docs/{doc_id}/tables/{table_id_3}/r
 response = requests.get(url, headers=headers)
 if response.status_code == 200:
     data2 = response.json()
-    #print("Houra")
     columns = data2['records'][0]['fields'].keys()
-    #print(list(columns)[0])
     # Process the data as needed
 else:
     print(f"Request failed with status code {response.status_code}")
 
-## Load Form0 from Grist
-subdomain = "docs"
-doc_id = "nSV5r7CLQCWzKqZCz7qBor"
-table_id_0 = "Form0"
-url = f"https://{subdomain}.getgrist.com/api/docs/{doc_id}/tables/{table_id_0}/records"
-response = requests.get(url, headers=headers)
-if response.status_code == 200:
-    data0 = response.json()
-    columns = data0['records'][0]['fields'].keys()
-    #print(list(columns)[0])
-    # Process the data as needed
-else:
-    print(f"Request failed with status code {response.status_code}")
+## ADD NEW DATA POSITION HERE
+
+#create a function to add config_info to the config data table on Grist
+def add_config(df_config):
+    ## Convert DataFrame to list of records
+    records = [{"fields": {"table_id": record["table_id"], "profiles": ", ".join(record["profiles"])}} for record in df_config.to_dict(orient='records')]
+    ## Prepare the request body
+    data = {"records": records}
+    
+    docId = "nSV5r7CLQCWzKqZCz7qBor"
+    tableId = "Config"
+    
+    ## Use the Grist API to add the new rows to the specified Grist table
+    url = f"https://{subdomain}.getgrist.com/api/docs/{docId}/tables/{tableId}/records"
+    response = requests.post(url, headers=headers, json=data) 
 
 
-## generate the different tabs of the app
+# generate the different tabs of the app
 menu_data = [
     {'icon': "far fa-copy", 'label': "Qualification"}
 ]
@@ -150,11 +137,10 @@ if 'selected_tab' not in st.session_state:
 #initialize selected_data in session state.
 if 'selected_data' not in st.session_state:
     st.session_state.selected_data = {}
-# La mission était claire : sauver le royaume des données...
-# ...en recrutant les profils data les plus qualifiés.
 
 
-## Create a tab to add the answers to the database
+
+## Create a colorizer tab
 def colorizer_tab():
     
     st.title("Bienvenue dans le Data Position Studio")
@@ -172,21 +158,8 @@ def colorizer_tab():
     st.header("Liste des Data Position de la communauté")
     col1, col2, col3 = st.columns(3)
     
-    #create a function to add config_info to the config grist
-    def add_config(df_config):
-
-        # Convert DataFrame to list of records
-        records = [{"fields": {"table_id": record["table_id"], "profiles": ", ".join(record["profiles"])}} for record in df_config.to_dict(orient='records')]
-        # Prepare the request body
-        data = {"records": records}
+    
         
-        docId = "nSV5r7CLQCWzKqZCz7qBor"
-        tableId = "Config"
-        
-        # Use the Grist API to add the new rows to the specified Grist table
-        url = f"https://{subdomain}.getgrist.com/api/docs/{docId}/tables/{tableId}/records"
-        response = requests.post(url, headers=headers, json=data) 
-        #write the response detail
         
     
     # Create elements with the different data positions that can be used
