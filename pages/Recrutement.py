@@ -284,7 +284,7 @@ def gatherizer_tab():
     df_scientist = grist_question_df[grist_question_df['profile_type'] == 'Data Scientist']
     df_dpo = grist_question_df[grist_question_df['profile_type'] == 'Data Protection Officer']
     df_chef = grist_question_df[grist_question_df['profile_type'] == 'Chef de Projet Data']
-    
+    df_geom = grist_question_df[grist_question_df['profile_type'] == 'Geomaticien']
     
     ############### create a logic to display questionns based on previous response
     
@@ -302,6 +302,8 @@ def gatherizer_tab():
     if df_answers[df_answers['profile_type'] == 'Chef de Projet Data']['score'].sum() >= 4:
         unique_questions = np.append(unique_questions, df_chef[df_chef['question_type'] == 'expertise'].question.unique())
     
+    if df_answers[df_answers['profile_type'] == 'Geomaticien']['score'].sum() >= 4:
+        unique_questions = np.append(unique_questions, df_geom[df_geom['question_type'] == 'expertise'].question.unique())
     ################ end 
     
     ## for each question, display the question and the possible answers
@@ -382,6 +384,7 @@ def gatherizer_tab():
     df_scientist = grist_question_df[grist_question_df['profile_type'] == 'Data Scientist']
     df_dpo = grist_question_df[grist_question_df['profile_type'] == 'Data Protection Officer']
     df_chef = grist_question_df[grist_question_df['profile_type'] == 'Chef de Projet Data']
+    df_geom = grist_question_df[grist_question_df['profile_type'] == 'Geomaticien']
     ############### create a logic to display questionns based on previous response
     
 
@@ -391,7 +394,7 @@ def gatherizer_tab():
     score_scientist_df = df_answers[df_answers['profile_type'] == 'Data Scientist'] 
     score_dpo_df = df_answers[df_answers['profile_type'] == 'Data Protection Officer'] 
     score_chef_df = df_answers[df_answers['profile_type'] == 'Chef de Projet Data']
-    
+    score_geom_df = df_answers[df_answers['profile_type'] == 'Geomaticien']
     
     for score_df in [score_analyst_df, score_scientist_df, score_dpo_df,score_chef_df]:
         sum_expertise_score = score_df[score_df['question_type'] == 'expertise']['score'].sum()
@@ -405,6 +408,8 @@ def gatherizer_tab():
                 unique_questions_mastery = np.append(unique_questions_mastery, df_dpo[df_dpo['question_type'] == 'mastery'].question.unique())
             elif score_df is score_chef_df:
                 unique_questions_mastery = np.append(unique_questions_mastery, df_chef[df_chef['question_type'] == 'mastery'].question.unique())
+            elif score_df is score_geom_df:
+                unique_questions_mastery = np.append(unique_questions_mastery, df_geom[df_geom['question_type'] == 'mastery'].question.unique())
     
     
     
