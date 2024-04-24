@@ -103,7 +103,7 @@ if st.button("Charger le data position",type="primary", key=1):
 #### Pour déployer un Data Position spécifique
 
 ##### 1. Dupliquer le document central Grist sur le compte du client
-Penser à bien noter la clé API du document
+Pensez à bien noter la clé API du document
 ##### 2. Forker le repo Github sur le compte du client
 ##### 3. Créer/Utiliser un compte Streamlit Cloud pour le client
 Avec ce compte Streamlit cloud, créer une application reliée au repo qui vient d'être créé. 
