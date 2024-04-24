@@ -90,8 +90,8 @@ API_KEY = "3a00dc02645f6f36f4e1c9449dd4a8529b5e9149"
 api = GristDocAPI(DOC_ID, server=SERVER, api_key=API_KEY)
 
 ## Load the data from Grist
-#api_key = st.secrets["grist_api_key"]
-api_key = "3a00dc02645f6f36f4e1c9449dd4a8529b5e9149"
+api_key = st.secrets["grist_api_key"]
+
 
 headers = {
     "Authorization": f"Bearer {api_key}"
