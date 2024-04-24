@@ -1,69 +1,34 @@
-# La forge à Data Position
+# Data Position Studio
 
-L'architecture est constituée : 
+Le Data Position Studio permet de générer des Data Position. 
 
-- d'une **base de données** qui va permettre de stocker : 
+Un Data Position est un outil qui permet à la fois : 
+* aux individus de savoir à quel(s) profil(s) data ils peuvent être affiliés (Data Analyst, Data Scientist, etc.)
+* aux organisations de mieux comprendre leur patrimoine d'expertise data
 
-	- les critères qui vont permettre de qualifier les profils
-	- les réponses de la population aux questions qui permettent de collecter les données relatives aux critères 
-	- les groupes dans lesquels les membres de la population sont répartis
+## Pourquoi un Data Position Studio ? 
 
-* d'une **application web** qui permettra au concepteur du Data Position de : 
+En 2024, les frontières des différents métiers de la donnée sont encore floues et leurs définitions varient d'une organisation à une autre. Dans ce cadre, il est opportun de permettre aux organisations de créer leur propre système de qualification des profils et de proposer une infrastructure légère pour déployer leur Data Position spécifique. Le Data Position Studio répond à ce besoin. 
 
-	* créer une table de qualification des membres de la population 
-	* recruter et qualifier des membres de la population via un questionnaire
-	* analyser la position de tous les membres de la population et les répartir en différents groupes 
+Aussi, le Data Position Studio a vocation à devenir un outil communautaire qui recense tous les Data Position créés **de manière à ce qu'ils puissent être réutilisés.** 
 
-## A propos de la base de données
+## Documentation technique 
 
-<p><span style="color: red;"><b>Attention</b> : 1 Data position = 1 base de données.</span> Il faudra donc demander la création d'une base de données à Datactivist pour pouvoir créer la base </p>
+Le Data Position Studio est constitué : 
+* D'un `document` Grist dans lequel sont stockées des `tables` de données brutes. Chaque table correspond à un Data Position créé par la communauté. On trouve aussi dans ce document une `table` de configuration.
+* D'un `repository` Github qui héberge le code source (écrit en Python) du Data Position Studio
+* D'une `application` Streamlit qui exectue le code Python
 
-Il s'agit d'un Google sheet avec 3 onglets : 
-
-### L'onglet "Colorizer" 
-Il correspond à la Table de qualification et va permettre de stocker : 
-	- les types de profils *data* que le concepteur veut pouvoir évaluer dans la population choisie
-	- les questions posées par le concepteur du dataposition pour identifier les différentes profils *data* au sein de sa population
-	- les réponses possibles pour chaque question
-	- le niveau de maitrise associé à chacune des réponses 
+![tech_stack_data_position](https://github.com/ArthurSrz/data-position-studio/assets/55806298/4d7585ba-961c-46c7-8b1b-5480eea330d8)
 
 
-![](media/onglet_colorizer.png)
-<center>Aperçu de l'onglet "Colorizer"</center>
+### Les tables de données brutes. 
 
+Chaque table de données brutes permet de stocker tous les éléments qui constituent un Data Position, à savoir : 
+* une liste de profils data 
+* un ensemble de questions/réponses permettant d'identifier un profil data
+* un score associé à chaque réponse permettant de préciser le niveau d'expertise du répondant sur les différents profils data 
 
-### L'onglet "Gatherizer" 
-Il stocke les réponses des membres de la population aux questions qui permettent de qualifier les profils
+#### Schema
 
-![](media/onglet_gatherizer.png)
-<center>Aperçu de l'onglet "Gatherizer"</center>
-
-
-### L'onglet "Dispenser" 
-Il stocke la répartition des membres de la population en différents groupes
-
-![](media/onglet_dispenser.png)
-<center>Aperçu de l'onglet "Dispenser"</center>
-
-## A propos de l'application Web 
-
-L'application Web permet d'accéder via une seule URL à toutes les fonctionnalités du Data position. Ainsi, le concepteur pourra y : 
-
-### Créer sa table de qualification
-
-![](media/onglet_table_qualification.png)
-<center>Aperçu de l'onglet "Qualification"</center>
-
-
-### Diffuser le questionnaire nécessaires pour qualifier les membres de sa population
-
-![](media/onglet_recensement.png)
-<center>Aperçu de l'onglet "Recrutement"</center>
-
-### Visualiser, en fonction des réponses, la répartition par profil des membres de sa population 
-
-![](media/onglet_position.png)
-<center>Aperçu de l'onglet "Recrutement"</center>
-
-### Dispatcher dans différents groupes les membres de sa population . 
-
+Voir [Table Schema](Schema_table.json)
