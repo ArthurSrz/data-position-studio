@@ -283,7 +283,7 @@ def gatherizer_tab():
     df_analyst = grist_question_df[grist_question_df['profile_type'] == 'Data Analyst']
     df_scientist = grist_question_df[grist_question_df['profile_type'] == 'Data Scientist']
     df_dpo = grist_question_df[grist_question_df['profile_type'] == 'Data Protection Officer']
-    
+    df_chef = grist_question_df[grist_question_df['profile_type'] == 'Chef de Projet Data']
     
     
     ############### create a logic to display questionns based on previous response
@@ -298,6 +298,9 @@ def gatherizer_tab():
     
     if df_answers[df_answers['profile_type'] == 'Data Protection Officer']['score'].sum() >= 4:
         unique_questions = np.append(unique_questions, df_dpo[df_dpo['question_type'] == 'expertise'].question.unique())
+    
+    if df_answers[df_answers['profile_type'] == 'Chef de Projet Data']['score'].sum() >= 4:
+        unique_questions = np.append(unique_questions, df_chef[df_chef['question_type'] == 'expertise'].question.unique())
     
     ################ end 
     
