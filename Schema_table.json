@@ -1,0 +1,85 @@
+{
+	"fields": [
+		{
+			"name": "nom",
+			"title": "nom",
+			"description": "Noms des répondants",
+			"constraints": {
+				"required": false,
+				"type": "http://www.w3.org/2001/XMLSchema#string"
+			}
+		},
+		{
+			"name": "prenom",
+			"title": "prenom",
+			"description": "Prénoms des répondants",
+			"constraints": {
+				"required": false,
+				"type": "http://www.w3.org/2001/XMLSchema#string"
+			}
+		},
+		{
+			"name": "mail",
+			"title": "mail",
+			"description": "Email des répondants",
+			"constraints": {
+				"required": false,
+				"type": "http://www.w3.org/2001/XMLSchema#string"
+			}
+		},
+		{
+			"name": "question_type",
+			"title": "question_type",
+			"description": "Type d'une question. Correspond à l'utilité d'une question dans le Data Position. 3 valeurs possibles : `screening` (pour les questions d'intro), `expertise` (pour les questions d'approfondissement) et `mastery` (pour les questions expertes).",
+			"constraints": {
+				"required": true,
+				"type": "http://www.w3.org/2001/XMLSchema#string"
+			}
+		},
+		{
+			"name": "position",
+			"title": "position",
+			"description":"Ordre de la question par type",
+			"constraints": {
+				"required": true,
+				"type": "http://www.w3.org/2001/XMLSchema#int"
+			}
+		},
+		{
+			"name": "question",
+			"title": "question",
+			"description":"Intitulé de la question",
+			"constraints": {
+				"required": true,
+				"type": "http://www.w3.org/2001/XMLSchema#string"
+			}
+		},
+		{
+			"name": "reponse",
+			"title": "reponse",
+			"description":"Intitulé d'une réponse",
+			"constraints": {
+				"required": true,
+				"type": "http://www.w3.org/2001/XMLSchema#string"
+			}
+		},
+		{
+			"name": "score",
+			"title": "score",
+			"description":"Score associé à chaque réponse",
+			"constraints": {
+				"required": true,
+				"type": "http://www.w3.org/2001/XMLSchema#int"
+			}
+		},
+		{
+			"name": "profile_type",
+			"title": "profile_type",
+			"description":"Profil associé à chaque question/réponse",
+			"constraints": {
+				"required": true,
+				"type": "http://www.w3.org/2001/XMLSchema#string"
+			}
+		}
+	]
+}
