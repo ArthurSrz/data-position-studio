@@ -396,7 +396,7 @@ def gatherizer_tab():
     score_chef_df = df_answers[df_answers['profile_type'] == 'Chef de Projet Data']
     score_geom_df = df_answers[df_answers['profile_type'] == 'Geomaticien']
     
-    for score_df in [score_analyst_df, score_scientist_df, score_dpo_df,score_chef_df]:
+    for score_df in [score_analyst_df, score_scientist_df, score_dpo_df,score_chef_df,score_geom_df]:
         sum_expertise_score = score_df[score_df['question_type'] == 'expertise']['score'].sum()
 
         if sum_expertise_score > 6:
