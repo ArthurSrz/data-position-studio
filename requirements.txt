@@ -1,6 +1,6 @@
 st-static-export
 altair
-numpy
+numpy==1.26
 pandas
 pydeck
 streamlit
